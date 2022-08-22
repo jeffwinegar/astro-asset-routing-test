@@ -1,0 +1,130 @@
+---
+export interface Props {
+	title: string;
+}
+
+const { title } = Astro.props as Props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+	</head>
+	<body>
+		<slot />
+	</body>
+</html>
+<style>
+	:root {
+		--font-family-base: Roboto, Arial, Helvetica, sans-serif;
+
+		
+		--font-size-base: clamp(1rem, 0.34vw + 0.91rem, 1.19rem);
+		--font-size-lg: clamp(1.2rem, 0.7vw + 1.2rem, 1.5rem);
+		--font-size-xl: clamp(2.44rem, 2.38vw + 1.85rem, 3.75rem);
+
+		--color-text: hsl(12, 5%, 4%);
+		--color-bg: hsl(10, 21%, 95%);
+		--color-border: hsl(17, 24%, 90%);
+	}
+
+	@font-face {
+		font-family: 'Roboto';
+		font-display: swap;
+		font-style: normal;
+		font-weight: 400;
+		src: url('/fonts/roboto-regular-webfont.eot');
+		src: url('/fonts/roboto-regular-webfont.eot?#iefix') format('embedded-opentype'),
+			url('/fonts/roboto-regular-webfont.woff') format('woff'),
+			url('/fonts/roboto-regular-webfont.ttf') format('truetype'),
+			url('/fonts/roboto-regular-webfont.svg') format('svg');
+	}
+
+	:global(*,
+		*::before,
+		*::after) {
+		box-sizing: border-box;
+	}
+
+	:global(body,
+		h1,
+		h2,
+		h3,
+		h4,
+		p,
+		figure,
+		blockquote,
+		dl,
+		dd) {
+		margin: 0;
+	}
+
+	:global(:where(ul, ol)[role="list"]) {
+		list-style: none;
+	}
+
+	:global(:where(ul, ol):not([role="list"]) > li + li,
+		li:not([class]) + li:not([class])) {
+		margin-top: calc(1ex / 0.32);
+	}
+
+	html:focus-within {
+		scroll-behavior: smooth;
+	}
+
+	body {
+		background-color: var(--color-bg);
+		color: var(--color-text);
+		font-family: var(--font-family-base);
+		font-size: var(--font-size-base);
+		text-rendering: optimizeSpeed;
+		-webkit-font-smoothing: antialiased;
+	}
+
+	:global(a:not([class])) {
+		text-decoration-skip-ink: auto;
+	}
+
+	:global(img,
+		picture) {
+		display: block;
+		height: auto;
+		max-width: 100%;
+	}
+
+	:global(input,
+		button,
+		textarea,
+		select) {
+		font: inherit;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		html:focus-within {
+			scroll-behavior: auto;
+		}
+
+		:global(*,
+			*::before,
+			*::after) {
+			animation-duration: 0.01ms !important;
+			animation-iteration-count: 1 !important;
+			scroll-behavior: auto !important;
+			transition-duration: 0.01ms !important;
+		}
+	}
+
+	:global(h1) {
+		font-size: var(--font-size-xl);
+	}
+
+	:global(h2) {
+		font-size: var(--font-size-lg);
+		margin-block: calc(1ex / 0.37);
+	}
+</style>
